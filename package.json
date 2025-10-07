@@ -40,7 +40,8 @@
     "typescript-eslint": "^8.45.0",
     "vite": "npm:rolldown-vite@7.1.14"
   },
-  "overrides": {
-    "vite": "npm:rolldown-vite@7.1.14"
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-musl": "^4.9.5",
+    "@rollup/rollup-linux-x64-gnu": "^4.9.5"
   }
 }

@@ -1,0 +1,35 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GHCR_PAT }}
+
+      - name: Build and push ARM image
+        run: |
+          TAG=${GITHUB_SHA}
+          IMAGE_NAME=ghcr.io/rodrigolmarques/url-shortener-web
+          
+          docker build --platform linux/arm64 -t $IMAGE_NAME:latest -t $IMAGE_NAME:$TAG .
+          docker push $IMAGE_NAME:latest
+          docker push $IMAGE_NAME:$TAG
+
+      - name: Atualizar container
+        run: |
+          cd ~/homelab/stacks/projects
+          docker compose pull url-shortener-web
+          docker compose up -d url-shortener-web
