@@ -8,8 +8,6 @@ export default defineConfig({
   preview: {
     host: true,
     port: 4173,
-    allowedHosts: process.env.VITE_ALLOWED_HOSTS
-      ? process.env.VITE_ALLOWED_HOSTS.split(",")
-      : ["localhost"],
+    allowedHosts: (process.env.VITE_ALLOWED_HOSTS || "localhost").split(","),
   },
 });
