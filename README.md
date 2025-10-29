@@ -15,7 +15,7 @@
 
 Frontend interface for the [URL Shortener API](https://github.com/RodrigoLMarques/url-shortener-api). Built with AI assistance to accelerate development and compensate for limited frontend experience.
 
-**Production**: https://link.marquesdev.com/web/
+**Production**: https://link.marquesdev.com
 
 **API Repository**: [url-shortener-api](https://github.com/RodrigoLMarques/url-shortener-api)
 
